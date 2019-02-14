@@ -1,17 +1,17 @@
 package pl.mp.notebook.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 public class Note {
 
     private String title;
 
-    private String author;
+    private Author author;
 
     private String text;
 
-    private Date date;
+    private LocalDateTime date;
 
     public String getTitle() {
         return title;
@@ -21,13 +21,14 @@ public class Note {
         this.title = title;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
+
 
     public String getText() {
         return text;
@@ -37,11 +38,11 @@ public class Note {
         this.text = text;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -71,7 +72,7 @@ public class Note {
     public String toString() {
         return "Note{" +
                 "title='" + title + '\'' +
-                ", author='" + author + '\'' +
+                ", author=" + author +
                 ", text='" + text + '\'' +
                 ", date=" + date +
                 '}';
