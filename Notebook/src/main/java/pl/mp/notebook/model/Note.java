@@ -1,6 +1,6 @@
 package pl.mp.notebook.model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 
 public class Note {
@@ -11,7 +11,7 @@ public class Note {
 
     private String text;
 
-    private LocalDateTime date;
+    private String date;
 
     public String getTitle() {
         return title;
@@ -38,11 +38,11 @@ public class Note {
         this.text = text;
     }
 
-    public LocalDateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -70,11 +70,9 @@ public class Note {
 
     @Override
     public String toString() {
-        return "Note{" +
-                "title='" + title + '\'' +
-                ", author=" + author +
-                ", text='" + text + '\'' +
-                ", date=" + date +
-                '}';
+        return "Title: " + title +
+                "; Author: " + author +
+                "; Date: " + date +
+                "; Text: \n" + text + "\n";
     }
 }

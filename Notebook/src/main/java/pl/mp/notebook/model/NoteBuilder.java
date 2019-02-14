@@ -1,8 +1,5 @@
 package pl.mp.notebook.model;
 
-
-import java.time.LocalDateTime;
-
 public class NoteBuilder {
 
     private String title;
@@ -13,7 +10,7 @@ public class NoteBuilder {
 
     private String text;
 
-    private LocalDateTime date;
+    private String date;
 
     public NoteBuilder withTitle(String title) {
         this.title = title;
@@ -35,7 +32,7 @@ public class NoteBuilder {
         return this;
     }
 
-    public NoteBuilder withDate(LocalDateTime date) {
+    public NoteBuilder withDate(String date) {
         this.date = date;
         return this;
     }
@@ -46,8 +43,9 @@ public class NoteBuilder {
         Author author = new Author();
         author.setName(authorName);
         author.setSurname(authorSurname);
+        note.setAuthor(author);
         note.setText(text);
-        note.setDate(LocalDateTime.now());
+        note.setDate(date);
         return note;
     }
 
