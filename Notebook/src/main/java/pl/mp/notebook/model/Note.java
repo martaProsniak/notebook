@@ -66,4 +66,14 @@ public class Note {
         result = 31 * result + date.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", text='" + text + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }
