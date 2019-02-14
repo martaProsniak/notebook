@@ -2,6 +2,7 @@ package pl.mp.notebook;
 
 import pl.mp.notebook.model.Note;
 import pl.mp.notebook.model.NoteBuilder;
+import pl.mp.notebook.model.Notebook;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -14,6 +15,8 @@ public class NotebookMain {
 
     public static void main(String[] args) {
 
+        Notebook notebook = new Notebook();
+
         boolean running = true;
 
         printMenu();
@@ -24,7 +27,7 @@ public class NotebookMain {
 
             switch (command) {
                 case 1: {
-                    System.out.println(addNote().toString());
+                    notebook.add(addNote());
                     break;
                 }
                 case 2: {
