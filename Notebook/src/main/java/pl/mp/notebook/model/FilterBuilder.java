@@ -20,7 +20,7 @@ public class FilterBuilder {
         return this;
     }
 
-    public FilterBuilder withAuthorSurname(String authorSurName) {
+    public FilterBuilder withAuthorSurname(String authorSurnameFilter) {
         this.authorSurnameFilter = authorSurnameFilter;
         return this;
     }
@@ -36,6 +36,7 @@ public class FilterBuilder {
         Author author = new Author();
         author.setName(authorNameFilter);
         author.setSurname(authorSurnameFilter);
+        filter.setAuthorFilter(author);
         filter.setTitleFilter(titleFilter);
         return filter;
     }

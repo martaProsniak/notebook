@@ -1,9 +1,9 @@
 package pl.mp.notebook;
 
-import pl.mp.notebook.model.Author;
 import pl.mp.notebook.model.DisplayNotebook;
 import pl.mp.notebook.model.DisplayStrategy;
 import pl.mp.notebook.model.Filter;
+import pl.mp.notebook.model.FilterApplier;
 import pl.mp.notebook.model.FilterBuilder;
 import pl.mp.notebook.model.FullDisplayStrategy;
 import pl.mp.notebook.model.Note;
@@ -42,7 +42,8 @@ public class NotebookMain {
                     break;
                 }
                 case 3: {
-
+                    Filter filter = chooseFilter();
+                    filter(notebook, filter);
                     break;
                 }
                 case 4: {
@@ -168,6 +169,11 @@ public class NotebookMain {
         return filter;
     }
 
+    public static void filter(Notebook notebook, Filter filter){
+        FilterApplier filterApplier = new FilterApplier(notebook, filter);
+        filterApplier.setFilter();
+
+    }
 
 }
 
