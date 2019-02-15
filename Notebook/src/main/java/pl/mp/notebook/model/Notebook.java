@@ -5,19 +5,15 @@ import java.util.List;
 
 public class Notebook implements NoteStorage {
 
-    private List<Note> noteList = new ArrayList<>();
+    private List<Note> noteStorage= new ArrayList<>();
+
 
     @Override
     public void add(Note note) {
         if (note == null){
             throw new RuntimeException();
         }
-        noteList.add(note);
-    }
-
-    @Override
-    public void display() {
-        noteList.forEach(System.out::println);
+        noteStorage.add(note);
     }
 
     @Override
@@ -27,7 +23,14 @@ public class Notebook implements NoteStorage {
 
     @Override
     public boolean remove(Note note) {
-        return false;
+        return noteStorage.remove(note);
+    }
+
+    @Override
+    public List<Note> getAll() {
+        List<Note> noteList = new ArrayList<>();
+        noteList.addAll(noteStorage);
+        return noteList;
     }
 }
 

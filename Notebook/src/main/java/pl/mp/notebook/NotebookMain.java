@@ -1,8 +1,12 @@
 package pl.mp.notebook;
 
+import pl.mp.notebook.model.DisplayNotebook;
+import pl.mp.notebook.model.DisplayStrategy;
+import pl.mp.notebook.model.FullDisplayStrategy;
 import pl.mp.notebook.model.Note;
 import pl.mp.notebook.model.NoteBuilder;
 import pl.mp.notebook.model.Notebook;
+import pl.mp.notebook.model.SimpleDisplayStrategy;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -31,7 +35,7 @@ public class NotebookMain {
                     break;
                 }
                 case 2: {
-                    notebook.display();
+                    display(notebook);
                     break;
                 }
                 case 3: {
@@ -56,7 +60,7 @@ public class NotebookMain {
         }
     }
 
-    public static void printMenu(){
+    public static void printMenu() {
         System.out.println("Choose action: \n" +
                 "1 - Add new note \n" +
                 "2 - Display note \n" +
@@ -65,7 +69,7 @@ public class NotebookMain {
                 "5 - Quit program");
     }
 
-    public static Note addNote(){
+    public static Note addNote() {
         System.out.print("Enter title: ");
         String title = inputScanner.next();
         System.out.print("Enter author name: ");
@@ -94,5 +98,33 @@ public class NotebookMain {
         return note;
     }
 
+    public static void display(Notebook notebook) {
+        System.out.println("How to display notes? \n" +
+                "1 - simple display (title and author \n" +
+                "2 - full display");
 
+        int command = inputScanner.nextInt();
+
+        switch (command) {
+            case 1: {
+                DisplayStrategy displayStrategy = new SimpleDisplayStrategy();
+                DisplayNotebook displayNotebook = new DisplayNotebook(notebook, displayStrategy);
+                displayNotebook.displayNotes();
+                break;
+            }
+            case 2: {
+                DisplayStrategy displayStrategy = new FullDisplayStrategy();
+                DisplayNotebook displayNotebook = new DisplayNotebook(notebook, displayStrategy);
+                displayNotebook.displayNotes();
+                break;
+            } default: {
+                System.out.println("Choose valid command!");
+                break;
+            }
+        }
+
+    }
 }
+
+
+
