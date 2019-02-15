@@ -31,7 +31,7 @@ public class NotebookMain {
                     break;
                 }
                 case 2: {
-
+                    notebook.display();
                     break;
                 }
                 case 3: {

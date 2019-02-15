@@ -3,11 +3,11 @@ package pl.mp.notebook.model;
 
 import java.util.List;
 
-public interface NotebookRepository {
+public interface NoteStorage {
 
     public void add (Note note);
 
-    public void display (List<Note> notes);
+    public void display ();
 
     public List<Note> filter (List<Note> notes);
 

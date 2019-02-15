@@ -1,19 +1,23 @@
 package pl.mp.notebook.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Notebook implements NotebookRepository {
+public class Notebook implements NoteStorage {
 
-    private NotebookRepository notebookRepository;
+    private List<Note> noteList = new ArrayList<>();
 
     @Override
     public void add(Note note) {
-        notebookRepository.add(note);
+        if (note == null){
+            throw new RuntimeException();
+        }
+        noteList.add(note);
     }
 
     @Override
-    public void display(List<Note> notes) {
-
+    public void display() {
+        noteList.forEach(System.out::println);
     }
 
     @Override
@@ -26,3 +30,4 @@ public class Notebook implements NotebookRepository {
         return false;
     }
 }
+
