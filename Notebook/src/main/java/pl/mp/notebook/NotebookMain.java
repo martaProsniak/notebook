@@ -1,7 +1,10 @@
 package pl.mp.notebook;
 
+import pl.mp.notebook.model.Author;
 import pl.mp.notebook.model.DisplayNotebook;
 import pl.mp.notebook.model.DisplayStrategy;
+import pl.mp.notebook.model.Filter;
+import pl.mp.notebook.model.FilterBuilder;
 import pl.mp.notebook.model.FullDisplayStrategy;
 import pl.mp.notebook.model.Note;
 import pl.mp.notebook.model.NoteBuilder;
@@ -117,13 +120,55 @@ public class NotebookMain {
                 DisplayNotebook displayNotebook = new DisplayNotebook(notebook, displayStrategy);
                 displayNotebook.displayNotes();
                 break;
-            } default: {
+            }
+            default: {
                 System.out.println("Choose valid command!");
                 break;
             }
         }
 
     }
+
+    public static Filter chooseFilter() {
+        String title = null;
+        String authorName = null;
+        String authorSurame = null;
+        String text = null;
+        String command;
+
+        System.out.println("Filter by title (y/n): ");
+        command = inputScanner.next();
+        if (command.equals("y")) {
+            System.out.println("Enter title to be filtered:");
+            title = inputScanner.next();
+        }
+
+        System.out.println("Filter by author (y/n): ");
+        command = inputScanner.next();
+        if (command.equals("y")) {
+            System.out.println("Enter author name to be filtered:");
+            authorName = inputScanner.next();
+            System.out.println("Enter author surname to be filtered:");
+            authorSurame = inputScanner.next();
+        }
+
+        System.out.println("Filter by text (y/n): ");
+        command = inputScanner.next();
+        if (command.equals("y")) {
+            System.out.println("Enter text to be filtered:");
+            text = inputScanner.next();
+        }
+
+        FilterBuilder filterBuilder = new FilterBuilder();
+        filterBuilder.withTitle(title)
+                .withAuthorName(authorName)
+                .withAuthorSurname(authorSurame)
+                .withText(text);
+        Filter filter = filterBuilder.build();
+        return filter;
+    }
+
+
 }
 
 
