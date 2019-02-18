@@ -1,20 +1,12 @@
 package pl.mp.notebook;
 
-import pl.mp.notebook.model.DisplayNotebook;
-import pl.mp.notebook.model.DisplayStrategy;
-import pl.mp.notebook.model.Filter;
-import pl.mp.notebook.model.FilterApplier;
-import pl.mp.notebook.model.FilterBuilder;
-import pl.mp.notebook.model.FullDisplayStrategy;
-import pl.mp.notebook.model.Note;
-import pl.mp.notebook.model.NoteBuilder;
-import pl.mp.notebook.model.Notebook;
-import pl.mp.notebook.model.SimpleDisplayStrategy;
+import pl.mp.notebook.model.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import static pl.mp.notebook.model.FilterPredicates.*;
 
 public class NotebookMain {
 
@@ -43,7 +35,7 @@ public class NotebookMain {
                 }
                 case 3: {
                     Filter filter = chooseFilter();
-                    filter(notebook, filter);
+                    System.out.println(filterNotes(notebook.getAll(), filterByAll(filter)));
                     break;
                 }
                 case 4: {
@@ -131,10 +123,10 @@ public class NotebookMain {
     }
 
     public static Filter chooseFilter() {
-        String title = null;
-        String authorName = null;
-        String authorSurame = null;
-        String text = null;
+        String title;
+        String authorName;
+        String authorSurname;
+        String text;
         String command;
 
         System.out.println("Filter by title (y/n): ");
@@ -142,7 +134,7 @@ public class NotebookMain {
         if (command.equals("y")) {
             System.out.println("Enter title to be filtered:");
             title = inputScanner.next();
-        }
+        } else title = null;
 
         System.out.println("Filter by author (y/n): ");
         command = inputScanner.next();
@@ -150,7 +142,10 @@ public class NotebookMain {
             System.out.println("Enter author name to be filtered:");
             authorName = inputScanner.next();
             System.out.println("Enter author surname to be filtered:");
-            authorSurame = inputScanner.next();
+            authorSurname = inputScanner.next();
+        } else  {
+            authorName = null;
+            authorSurname = null;
         }
 
         System.out.println("Filter by text (y/n): ");
@@ -158,22 +153,23 @@ public class NotebookMain {
         if (command.equals("y")) {
             System.out.println("Enter text to be filtered:");
             text = inputScanner.next();
+        } else text = null;
+
+        if (title == null && authorName == null && authorSurname == null && text == null){
+            return new Filter();
+        } else{
+            FilterBuilder filterBuilder = new FilterBuilder();
+            filterBuilder.withTitle(title)
+                    .withAuthorName(authorName)
+                    .withAuthorSurname(authorSurname)
+                    .withText(text);
+            Filter filter = filterBuilder.build();
+            return filter;
         }
-
-        FilterBuilder filterBuilder = new FilterBuilder();
-        filterBuilder.withTitle(title)
-                .withAuthorName(authorName)
-                .withAuthorSurname(authorSurame)
-                .withText(text);
-        Filter filter = filterBuilder.build();
-        return filter;
     }
 
-    public static void filter(Notebook notebook, Filter filter){
-        FilterApplier filterApplier = new FilterApplier(notebook, filter);
-        filterApplier.setFilter();
 
-    }
+
 
 }
 

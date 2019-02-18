@@ -2,34 +2,34 @@ package pl.mp.notebook.model;
 
 public class Filter {
 
-    private String titleFilter;
+    private String titleToFilter;
 
-    private Author authorFilter;
+    private Author authorToFilter;
 
-    private String textFilter;
+    private String textToFilter;
 
-    public String getTitleFilter() {
-        return titleFilter;
+    public String getTitleToFilter() {
+        return titleToFilter;
     }
 
-    public void setTitleFilter(String titleFilter) {
-        this.titleFilter = titleFilter;
+    public void setTitleToFilter(String titleToFilter) {
+        this.titleToFilter = titleToFilter;
     }
 
-    public Author getAuthorFilter() {
-        return authorFilter;
+    public Author getAuthorToFilter() {
+        return authorToFilter;
     }
 
-    public void setAuthorFilter(Author authorFilter) {
-        this.authorFilter = authorFilter;
+    public void setAuthorToFilter(Author authorToFilter) {
+        this.authorToFilter = authorToFilter;
     }
 
-    public String getTextFilter() {
-        return textFilter;
+    public String getTextToFilter() {
+        return textToFilter;
     }
 
-    public void setTextFilter(String textFilter) {
-        this.textFilter = textFilter;
+    public void setTextToFilter(String textToFilter) {
+        this.textToFilter = textToFilter;
     }
 
 }

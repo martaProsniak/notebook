@@ -12,6 +12,6 @@ public class DisplayNotebook {
     }
 
     public void displayNotes() {
-        displayStrategy.display(notebook.getAll());
+        displayStrategy.display(notebook);
     }
 }
