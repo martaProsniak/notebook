@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+
 import static pl.mp.notebook.model.FilterPredicates.*;
 
 public class NotebookMain {
@@ -68,10 +69,8 @@ public class NotebookMain {
     public static Note addNote() {
         System.out.print("Enter title: ");
         String title = inputScanner.next();
-        System.out.print("Enter author name: ");
-        String authorName = inputScanner.next();
-        System.out.print("Enter author surname: ");
-        String authorSurname = inputScanner.next();
+        System.out.print("Enter author : ");
+        String author = inputScanner.next();
         System.out.print("Enter text: ");
         String text = inputScanner.next();
 
@@ -82,8 +81,7 @@ public class NotebookMain {
 
         String dateText = dateFormat.format(date);
         noteBuilder.withTitle(title)
-                .withAuthorName(authorName)
-                .withAuthorSurname(authorSurname)
+                .withAuthor(author)
                 .withText(text)
                 .withDate(dateText);
         Note note = noteBuilder.build();
@@ -124,8 +122,7 @@ public class NotebookMain {
 
     public static Filter chooseFilter() {
         String title;
-        String authorName;
-        String authorSurname;
+        String author;
         String text;
         String command;
 
@@ -139,13 +136,10 @@ public class NotebookMain {
         System.out.println("Filter by author (y/n): ");
         command = inputScanner.next();
         if (command.equals("y")) {
-            System.out.println("Enter author name to be filtered:");
-            authorName = inputScanner.next();
-            System.out.println("Enter author surname to be filtered:");
-            authorSurname = inputScanner.next();
-        } else  {
-            authorName = null;
-            authorSurname = null;
+            System.out.println("Enter author to be filtered:");
+            author = inputScanner.next();
+        } else {
+            author = null;
         }
 
         System.out.println("Filter by text (y/n): ");
@@ -155,20 +149,15 @@ public class NotebookMain {
             text = inputScanner.next();
         } else text = null;
 
-        if (title == null && authorName == null && authorSurname == null && text == null){
+        if ((title == null) && (author == null) && (text == null)) {
             return new Filter();
-        } else{
+        } else {
             FilterBuilder filterBuilder = new FilterBuilder();
-            filterBuilder.withTitle(title)
-                    .withAuthorName(authorName)
-                    .withAuthorSurname(authorSurname)
-                    .withText(text);
+            filterBuilder.withTitle(title).withAuthor(author).withText(text);
             Filter filter = filterBuilder.build();
             return filter;
         }
     }
-
-
 
 
 }

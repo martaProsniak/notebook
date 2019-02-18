@@ -4,7 +4,7 @@ public class Filter {
 
     private String titleToFilter;
 
-    private Author authorToFilter;
+    private String authorToFilter;
 
     private String textToFilter;
 
@@ -16,11 +16,11 @@ public class Filter {
         this.titleToFilter = titleToFilter;
     }
 
-    public Author getAuthorToFilter() {
+    public String getAuthorToFilter() {
         return authorToFilter;
     }
 
-    public void setAuthorToFilter(Author authorToFilter) {
+    public void setAuthorToFilter(String authorToFilter) {
         this.authorToFilter = authorToFilter;
     }
 

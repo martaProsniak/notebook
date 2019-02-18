@@ -7,7 +7,7 @@ public class Note {
 
     private String title;
 
-    private Author author;
+    private String author;
 
     private String text;
 
@@ -21,11 +21,11 @@ public class Note {
         this.title = title;
     }
 
-    public Author getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 

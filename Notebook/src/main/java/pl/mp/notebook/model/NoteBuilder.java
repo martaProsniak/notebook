@@ -4,9 +4,7 @@ public class NoteBuilder {
 
     private String title;
 
-    private String authorName;
-
-    private String authorSurname;
+    private String author;
 
     private String text;
 
@@ -17,13 +15,8 @@ public class NoteBuilder {
         return this;
     }
 
-    public NoteBuilder withAuthorName(String authorName) {
-        this.authorName = authorName;
-        return this;
-    }
-
-    public NoteBuilder withAuthorSurname(String authorSurname) {
-        this.authorSurname = authorSurname;
+    public NoteBuilder withAuthor(String author) {
+        this.author = author;
         return this;
     }
 
@@ -40,9 +33,6 @@ public class NoteBuilder {
     public Note build() {
         Note note = new Note();
         note.setTitle(title);
-        Author author = new Author();
-        author.setName(authorName);
-        author.setSurname(authorSurname);
         note.setAuthor(author);
         note.setText(text);
         note.setDate(date);

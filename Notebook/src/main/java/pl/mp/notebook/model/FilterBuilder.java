@@ -4,9 +4,7 @@ public class FilterBuilder {
 
     private String titleToFilter;
 
-    private String authorNameToFilter;
-
-    private String authorSurnameToFilter;
+    private String authorToFilter;
 
     private String textToFilter;
 
@@ -15,13 +13,8 @@ public class FilterBuilder {
         return this;
     }
 
-    public FilterBuilder withAuthorName(String authorName) {
-        this.authorNameToFilter = authorName;
-        return this;
-    }
-
-    public FilterBuilder withAuthorSurname(String authorSurnameFilter) {
-        this.authorSurnameToFilter = authorSurnameFilter;
+    public FilterBuilder withAuthor(String author) {
+        this.authorToFilter = author;
         return this;
     }
 
@@ -33,10 +26,7 @@ public class FilterBuilder {
     public Filter build() {
         Filter filter = new Filter();
         filter.setTextToFilter(textToFilter);
-        Author author = new Author();
-        author.setName(authorNameToFilter);
-        author.setSurname(authorSurnameToFilter);
-        filter.setAuthorToFilter(author);
+        filter.setAuthorToFilter(authorToFilter);
         filter.setTitleToFilter(titleToFilter);
         return filter;
     }
