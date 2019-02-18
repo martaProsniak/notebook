@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class FilterPredicates {
 
-    public static Predicate<Note> filterByTitle (Filter filter) {
+   /* public static Predicate<Note> filterByTitle (Filter filter) {
         return p -> p.getTitle().equalsIgnoreCase(filter.getTitleToFilter());
     }
 
@@ -31,15 +31,15 @@ public class FilterPredicates {
     public static Predicate<Note> filterByAuthorAndText (Filter filter){
         return p -> p.getAuthor().equals(filter.getAuthorToFilter()) &&
                 p.getText().equalsIgnoreCase(filter.getTextToFilter());
-    }
+    }*/
 
-    public static Predicate<Note> filterByAll (Filter filter){
+    public static Predicate<Note> filterBuild(Filter filter){
         return p -> (p.getText().equalsIgnoreCase(filter.getTextToFilter()) || filter.getTextToFilter() == null) &&
                 (p.getAuthor().equals(filter.getAuthorToFilter()) || filter.getAuthorToFilter() == null) &&
                 (p.getTitle().equalsIgnoreCase(filter.getTitleToFilter()) || filter.getTitleToFilter() == null);
     }
 
-    public static List<Note> filterNotes (List<Note> notes, Predicate<Note> filterPredicate){
+    public static List<Note> filterNotesList(List<Note> notes, Predicate<Note> filterPredicate){
         return notes.stream()
                 .filter(filterPredicate)
                 .collect(Collectors.toList());

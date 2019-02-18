@@ -1,17 +1,19 @@
 package pl.mp.notebook.model;
 
+import java.util.List;
+
 public class DisplayNotebook {
 
-    private Notebook notebook;
+    private List<Note> noteList;
 
     private DisplayStrategy displayStrategy;
 
-    public DisplayNotebook(Notebook notebook, DisplayStrategy displayStrategy) {
-        this.notebook = notebook;
+    public DisplayNotebook(List<Note> notebook, DisplayStrategy displayStrategy) {
+        this.noteList = notebook;
         this.displayStrategy = displayStrategy;
     }
 
     public void displayNotes() {
-        displayStrategy.display(notebook);
+        displayStrategy.display(noteList);
     }
 }

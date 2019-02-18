@@ -5,6 +5,7 @@ import pl.mp.notebook.model.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 import static pl.mp.notebook.model.FilterPredicates.*;
@@ -31,12 +32,12 @@ public class NotebookMain {
                     break;
                 }
                 case 2: {
-                    display(notebook);
+                    display(notebook.getAll());
                     break;
                 }
                 case 3: {
                     Filter filter = chooseFilter();
-                    System.out.println(filterNotes(notebook.getAll(), filterByAll(filter)));
+                    display(filterNotesList(notebook.getAll(), filterBuild(filter)));
                     break;
                 }
                 case 4: {
@@ -92,7 +93,7 @@ public class NotebookMain {
         return note;
     }
 
-    public static void display(Notebook notebook) {
+    public static void display(List<Note> notesList) {
         System.out.println("How to display notes? \n" +
                 "1 - simple display (title and author) \n" +
                 "2 - full display");
@@ -102,13 +103,13 @@ public class NotebookMain {
         switch (command) {
             case 1: {
                 DisplayStrategy displayStrategy = new SimpleDisplayStrategy();
-                DisplayNotebook displayNotebook = new DisplayNotebook(notebook, displayStrategy);
+                DisplayNotebook displayNotebook = new DisplayNotebook(notesList, displayStrategy);
                 displayNotebook.displayNotes();
                 break;
             }
             case 2: {
                 DisplayStrategy displayStrategy = new FullDisplayStrategy();
-                DisplayNotebook displayNotebook = new DisplayNotebook(notebook, displayStrategy);
+                DisplayNotebook displayNotebook = new DisplayNotebook(notesList, displayStrategy);
                 displayNotebook.displayNotes();
                 break;
             }
