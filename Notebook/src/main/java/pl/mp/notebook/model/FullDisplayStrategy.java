@@ -1,9 +1,11 @@
 package pl.mp.notebook.model;
 
+import java.util.List;
+
 public class FullDisplayStrategy implements DisplayStrategy {
 
     @Override
-    public void display(Notebook notebook) {
-        notebook.getAll().forEach(System.out::println);
+    public void display(List<Note> notes) {
+        notes.forEach(System.out::println);
     }
 }

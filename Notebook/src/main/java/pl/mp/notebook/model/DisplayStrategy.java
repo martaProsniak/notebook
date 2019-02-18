@@ -1,6 +1,8 @@
 package pl.mp.notebook.model;
 
+import java.util.List;
+
 public interface DisplayStrategy {
 
-    public void display(Notebook notebook);
+    public void display(List<Note> notes);
 }

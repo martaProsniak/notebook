@@ -104,7 +104,7 @@ public class NotebookMain {
 
     public static void display(Notebook notebook) {
         System.out.println("How to display notes? \n" +
-                "1 - simple display (title and author \n" +
+                "1 - simple display (title and author) \n" +
                 "2 - full display");
 
         int command = inputScanner.nextInt();
