@@ -24,42 +24,29 @@ public class NotebookMain {
 
         while (running) {
 
-            int command;
+            String command;
 
-            if (!inputScanner.hasNextInt()){
-                System.out.println("Invalid command; number command expected");
-                command = 5;
-            } else {
-                command = inputScanner.nextInt();
-            }
+            command = inputScanner.next().toUpperCase();
 
             switch (command) {
-                case 1: {
+                case ("A"): {
                     notebook.add(addNote());
                     break;
                 }
-                case 2: {
-                    display(notebook.getAll());
+                case ("D"): {
+                    display(notebook.getAll(), chooseDisplayWay());
                     break;
                 }
-                case 3: {
-                    Filter filter = chooseFilter();
-                    display(filterNotes(notebook.getAll(), compareWith(filter)));
+                case ("F"): {
+                    List <Note> filteredNotes = filterNotes(notebook);
+                    display(filteredNotes, chooseDisplayWay());
                     break;
                 }
-                case 4: {
-                    Filter filter = chooseFilter();
-                    display(filterNotes(notebook.getAll(), compareWith(filter)));
-                    System.out.println("Confirm remove (y)");
-                    String confirmation = inputScanner.next();
-                    if (confirmation.equalsIgnoreCase("y")){
-                        notebook.remove(filterNotes(notebook.getAll(), compareWith(filter)));
-                    } else {
-                        System.out.println("Operation cancelled!");
-                    }
+                case ("R"): {
+                    removeNotes(notebook);
                     break;
                 }
-                case 5: {
+                case ("Q"): {
                     running = false;
                     break;
                 }
@@ -75,11 +62,11 @@ public class NotebookMain {
 
     public static void printMenu() {
         System.out.println("Choose action: \n" +
-                "1 - Add new note \n" +
-                "2 - Display note \n" +
-                "3 - Filter notes \n" +
-                "4 - Remove note \n" +
-                "5 - Quit program");
+                "A - Add new note \n" +
+                "D - Display note \n" +
+                "F - Filter notes \n" +
+                "R - Remove note \n" +
+                "Q - Quit program");
     }
 
     public static Note addNote() {
@@ -108,21 +95,24 @@ public class NotebookMain {
         return note;
     }
 
-    public static void display(List<Note> notesList) {
+    public static String chooseDisplayWay(){
         System.out.println("How to display notes? \n" +
-                "1 - simple display (title and author) \n" +
-                "2 - full display");
+                "Short - simple display (title and author) \n" +
+                "All - full display");
+        String displayWay = inputScanner.next().toUpperCase();
+        return displayWay;
+    }
 
-        int command = inputScanner.nextInt();
+    public static void display(List<Note> notesList, String displayWay) {
 
-        switch (command) {
-            case 1: {
+        switch (displayWay) {
+            case ("SHORT"): {
                 DisplayStrategy displayStrategy = new SimpleDisplayStrategy();
                 DisplayNotebook displayNotebook = new DisplayNotebook(notesList, displayStrategy);
                 displayNotebook.displayNotes();
                 break;
             }
-            case 2: {
+            case ("ALL"): {
                 DisplayStrategy displayStrategy = new FullDisplayStrategy();
                 DisplayNotebook displayNotebook = new DisplayNotebook(notesList, displayStrategy);
                 displayNotebook.displayNotes();
@@ -175,6 +165,26 @@ public class NotebookMain {
         }
     }
 
+    public static List<Note> filterNotes (Notebook notebook){
+        Filter filter = chooseFilter();
+        return compareNotes(notebook.getAll(), createFilter(filter));
+    }
+
+    public static boolean removeNotes (Notebook notebook){
+        List <Note> filteredNotes = filterNotes(notebook);
+        String displayWay = "SHORT";
+        display(filteredNotes, displayWay);
+        System.out.println("Press Y to confirm removal");
+        String confirmation = inputScanner.next();
+        if (confirmation.equalsIgnoreCase("y")){
+            notebook.remove(filteredNotes);
+            System.out.println("Notes removed!");
+            return true;
+        } else {
+            System.out.println("Operation cancelled!");
+            return false;
+        }
+    }
 
 }
 
