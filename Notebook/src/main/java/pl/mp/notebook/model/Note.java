@@ -1,7 +1,5 @@
 package pl.mp.notebook.model;
 
-import java.util.Date;
-
 
 public class Note {
 
@@ -71,8 +69,9 @@ public class Note {
     @Override
     public String toString() {
         return "Date: " + date +
-                ";\nTitle: " + title +
-                ";\nText: " + text +
-                ";\nAuthor:  "+ author + "\n";
+                "\nTitle: " + title +
+                "\nText: " + text +
+                "\nAuthor: "+ author +
+                "\n-----------------------";
     }
 }

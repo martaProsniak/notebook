@@ -8,7 +8,7 @@ public class SimpleDisplayStrategy implements DisplayStrategy {
     @Override
     public void display(List<Note> notes) {
         notes.stream()
-                .map(note -> note.getTitle() + "; author: " + note.getAuthor())
+                .map(note -> "Author: " + note.getAuthor() + "; " + note.getTitle())
                 .forEach(System.out::println);
     }
 }

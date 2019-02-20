@@ -136,16 +136,16 @@ public class NotebookMain {
         command = inputScanner.next();
         if (command.equals("y")) {
             System.out.println("Enter title:");
-            title = inputScanner.nextLine();
             inputScanner.nextLine();
+            title = inputScanner.nextLine();
         } else title = null;
 
         System.out.println("Choose by author (y/n): ");
         command = inputScanner.next();
         if (command.equals("y")) {
             System.out.println("Enter author:");
-            author = inputScanner.nextLine();
             inputScanner.nextLine();
+            author = inputScanner.nextLine();
         } else {
             author = null;
         }
@@ -154,8 +154,8 @@ public class NotebookMain {
         command = inputScanner.next();
         if (command.equals("y")) {
             System.out.println("Enter text:");
-            text = inputScanner.nextLine();
             inputScanner.nextLine();
+            text = inputScanner.nextLine();
         } else text = null;
 
         if ((title == null) && (author == null) && (text == null)) {
