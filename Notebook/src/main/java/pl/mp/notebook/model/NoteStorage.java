@@ -7,9 +7,7 @@ public interface NoteStorage {
 
     public void add (Note note);
 
-    public List<Note> filter (List<Note> notes);
-
-    public boolean remove (Note note);
+    public boolean remove (List<Note>notes);
 
     public List<Note> getAll();
 

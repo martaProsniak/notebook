@@ -24,7 +24,14 @@ public class NotebookMain {
 
         while (running) {
 
-            int command = inputScanner.nextInt();
+            int command;
+
+            if (!inputScanner.hasNextInt()){
+                System.out.println("Invalid command; number command expected");
+                command = 5;
+            } else {
+                command = inputScanner.nextInt();
+            }
 
             switch (command) {
                 case 1: {
@@ -37,11 +44,19 @@ public class NotebookMain {
                 }
                 case 3: {
                     Filter filter = chooseFilter();
-                    display(filterNotesList(notebook.getAll(), filterBuild(filter)));
+                    display(filterNotes(notebook.getAll(), compareWith(filter)));
                     break;
                 }
                 case 4: {
-
+                    Filter filter = chooseFilter();
+                    display(filterNotes(notebook.getAll(), compareWith(filter)));
+                    System.out.println("Confirm remove (y)");
+                    String confirmation = inputScanner.next();
+                    if (confirmation.equalsIgnoreCase("y")){
+                        notebook.remove(filterNotes(notebook.getAll(), compareWith(filter)));
+                    } else {
+                        System.out.println("Operation cancelled!");
+                    }
                     break;
                 }
                 case 5: {

@@ -33,13 +33,13 @@ public class FilterPredicates {
                 p.getText().equalsIgnoreCase(filter.getTextToFilter());
     }*/
 
-    public static Predicate<Note> filterBuild(Filter filter){
+    public static Predicate<Note> compareWith(Filter filter){
         return p -> (p.getText().equalsIgnoreCase(filter.getTextToFilter()) || filter.getTextToFilter() == null) &&
                 (p.getAuthor().equals(filter.getAuthorToFilter()) || filter.getAuthorToFilter() == null) &&
                 (p.getTitle().equalsIgnoreCase(filter.getTitleToFilter()) || filter.getTitleToFilter() == null);
     }
 
-    public static List<Note> filterNotesList(List<Note> notes, Predicate<Note> filterPredicate){
+    public static List<Note> filterNotes(List<Note> notes, Predicate<Note> filterPredicate){
         return notes.stream()
                 .filter(filterPredicate)
                 .collect(Collectors.toList());

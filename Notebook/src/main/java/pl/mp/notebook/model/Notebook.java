@@ -12,18 +12,18 @@ public class Notebook implements NoteStorage {
     public void add(Note note) {
         if (note == null){
             throw new RuntimeException();
+        } else {
+            noteStorage.add(note);
         }
-        noteStorage.add(note);
     }
 
     @Override
-    public List<Note> filter(List<Note> notes) {
-        return null;
-    }
-
-    @Override
-    public boolean remove(Note note) {
-        return noteStorage.remove(note);
+    public boolean remove(List<Note> notes) {
+        if (notes.isEmpty()){
+            throw new RuntimeException();
+        } else {
+            return noteStorage.removeAll(notes);
+        }
     }
 
     @Override
