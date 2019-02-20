@@ -38,8 +38,7 @@ public class NotebookMain {
                     break;
                 }
                 case ("F"): {
-                    List <Note> filteredNotes = filterNotes(notebook);
-                    display(filteredNotes, chooseDisplayWay());
+                    display(filterNotes(notebook), chooseDisplayWay());
                     break;
                 }
                 case ("R"): {
@@ -71,11 +70,12 @@ public class NotebookMain {
 
     public static Note addNote() {
         System.out.print("Enter title: ");
-        String title = inputScanner.next();
-        System.out.print("Enter author : ");
-        String author = inputScanner.next();
+        inputScanner.nextLine();
+        String title = inputScanner.nextLine();
+        System.out.print("Enter author: ");
+        String author = inputScanner.nextLine();
         System.out.print("Enter text: ");
-        String text = inputScanner.next();
+        String text = inputScanner.nextLine();
 
         NoteBuilder noteBuilder = new NoteBuilder();
 
@@ -132,27 +132,30 @@ public class NotebookMain {
         String text;
         String command;
 
-        System.out.println("Filter by title (y/n): ");
+        System.out.println("Choose by title (y/n): ");
         command = inputScanner.next();
         if (command.equals("y")) {
-            System.out.println("Enter title to be filtered:");
-            title = inputScanner.next();
+            System.out.println("Enter title:");
+            title = inputScanner.nextLine();
+            inputScanner.nextLine();
         } else title = null;
 
-        System.out.println("Filter by author (y/n): ");
+        System.out.println("Choose by author (y/n): ");
         command = inputScanner.next();
         if (command.equals("y")) {
-            System.out.println("Enter author to be filtered:");
-            author = inputScanner.next();
+            System.out.println("Enter author:");
+            author = inputScanner.nextLine();
+            inputScanner.nextLine();
         } else {
             author = null;
         }
 
-        System.out.println("Filter by text (y/n): ");
+        System.out.println("Choose by text (y/n): ");
         command = inputScanner.next();
         if (command.equals("y")) {
-            System.out.println("Enter text to be filtered:");
-            text = inputScanner.next();
+            System.out.println("Enter text:");
+            text = inputScanner.nextLine();
+            inputScanner.nextLine();
         } else text = null;
 
         if ((title == null) && (author == null) && (text == null)) {
@@ -173,8 +176,9 @@ public class NotebookMain {
     public static boolean removeNotes (Notebook notebook){
         List <Note> filteredNotes = filterNotes(notebook);
         String displayWay = "SHORT";
+        System.out.println("You're about to remove below notes:");
         display(filteredNotes, displayWay);
-        System.out.println("Press Y to confirm removal");
+        System.out.println("\nPress Y to confirm removal");
         String confirmation = inputScanner.next();
         if (confirmation.equalsIgnoreCase("y")){
             notebook.remove(filteredNotes);

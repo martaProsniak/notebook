@@ -70,9 +70,9 @@ public class Note {
 
     @Override
     public String toString() {
-        return "Title: " + title +
-                "; Author: " + author +
-                "; Date: " + date +
-                "; Text: \n" + text + "\n";
+        return "Date: " + date +
+                ";\nTitle: " + title +
+                ";\nText: " + text +
+                ";\nAuthor:  "+ author + "\n";
     }
 }
