@@ -16,7 +16,7 @@ public class NotebookMain {
 
     public static void main(String[] args) {
 
-        Notebook notebook = new Notebook();
+        Notebook notebook = Notebook.getInstance();
 
         boolean running = true;
 

@@ -5,6 +5,15 @@ import java.util.List;
 
 public class Notebook implements NoteStorage {
 
+    public static Notebook notebook = new Notebook();
+
+    public static Notebook getInstance(){
+        return notebook;
+    }
+
+    private Notebook(){
+    }
+
     private List<Note> noteStorage= new ArrayList<>();
 
 
