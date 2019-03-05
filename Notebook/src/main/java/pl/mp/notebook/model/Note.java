@@ -72,6 +72,6 @@ public class Note {
                 "\nTitle: " + title +
                 "\nText: " + text +
                 "\nAuthor: "+ author +
-                "\n-----------------------\n";
+                "\n-----------------------";
     }
 }

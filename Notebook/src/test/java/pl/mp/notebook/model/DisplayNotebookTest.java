@@ -39,7 +39,7 @@ public class DisplayNotebookTest {
 
 
     @Test
-    public void testSimpleDisplay() {
+    public void testFullDisplay() {
         displayStrategy = new FullDisplayStrategy();
         DisplayNotebook displayNotebook = new DisplayNotebook(noteList, displayStrategy);
 
@@ -50,9 +50,31 @@ public class DisplayNotebookTest {
         System.setOut(ps);
 
         displayNotebook.displayNotes();
-        boolean test = notes.contentEquals(os.toString());
+        //boolean test = notes.contentEquals(os.toString());
 
-        assertTrue(test);
+        assertTrue(notes.contentEquals(os.toString()));
+
+        PrintStream originalOut = System.out;
+        System.setOut(originalOut);
+    }
+
+    @Test
+    public void testSimpleDisplay() {
+        displayStrategy = new SimpleDisplayStrategy();
+        DisplayNotebook displayNotebook = new DisplayNotebook(noteList, displayStrategy);
+
+        String notes = noteList.stream()
+                .map(note -> "Author: " + note.getAuthor() + "; " + note.getTitle() + "\r\n")
+                .collect(Collectors.joining());
+
+        OutputStream os = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(os);
+        System.setOut(ps);
+
+        displayNotebook.displayNotes();
+        //boolean test = notes.contentEquals(os.toString());
+
+        assertTrue(notes.contentEquals(os.toString()));
 
         PrintStream originalOut = System.out;
         System.setOut(originalOut);
