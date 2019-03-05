@@ -8,8 +8,8 @@ public class DisplayNotebook {
 
     private DisplayStrategy displayStrategy;
 
-    public DisplayNotebook(List<Note> notebook, DisplayStrategy displayStrategy) {
-        this.noteList = notebook;
+    public DisplayNotebook(List<Note> noteList, DisplayStrategy displayStrategy) {
+        this.noteList = noteList;
         this.displayStrategy = displayStrategy;
     }
 

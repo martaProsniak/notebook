@@ -8,7 +8,6 @@ import org.junit.Test;
 
 public class FilterBuilderTest {
 
-    Note note1;
     Filter filter1;
 
     @Before
