@@ -20,7 +20,7 @@ public class Notebook implements NoteStorage {
     @Override
     public void add(Note note) {
         if (note == null){
-            throw new RuntimeException();
+            System.out.println("Note not added!");
         } else {
             noteStorage.add(note);
         }
