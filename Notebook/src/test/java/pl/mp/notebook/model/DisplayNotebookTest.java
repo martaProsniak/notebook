@@ -1,7 +1,6 @@
 package pl.mp.notebook.model;
 
-import org.assertj.core.api.Assertions;
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -43,14 +42,13 @@ public class DisplayNotebookTest {
         displayStrategy = new FullDisplayStrategy();
         DisplayNotebook displayNotebook = new DisplayNotebook(noteList, displayStrategy);
 
-        String notes = noteList.stream().map(note -> note + "\r\n").collect(Collectors.joining());
+        String notes = noteList.stream().map(note -> note + "\n").collect(Collectors.joining());
 
         OutputStream os = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(os);
         System.setOut(ps);
 
         displayNotebook.displayNotes();
-        //boolean test = notes.contentEquals(os.toString());
 
         assertTrue(notes.contentEquals(os.toString()));
 
@@ -64,7 +62,7 @@ public class DisplayNotebookTest {
         DisplayNotebook displayNotebook = new DisplayNotebook(noteList, displayStrategy);
 
         String notes = noteList.stream()
-                .map(note -> "Author: " + note.getAuthor() + "; " + note.getTitle() + "\r\n")
+                .map(note -> "Author: " + note.getAuthor() + "; " + note.getTitle() + "\n")
                 .collect(Collectors.joining());
 
         OutputStream os = new ByteArrayOutputStream();

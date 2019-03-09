@@ -3,8 +3,6 @@ package pl.mp.notebook.model;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -22,16 +20,21 @@ public class NotebookTest {
     }
 
     @Test
-    public void addTestWhenNoteNotNull(){
-        notebook.add(note1);
-        assertTrue(notebook.getAll().contains(note1));
+    public void addTestWhenNoteNull(){
+        notebook.add(null);
+        assertTrue(notebook.getAll().isEmpty());
     }
 
     @Test
-    public void addTestWhenNoteNull(){
-        Note noteNull = null;
-        notebook.add(noteNull);
-        assertFalse(notebook.getAll().contains(noteNull));
+    public void addTestWhenNoteNotNull(){
+        note1.setTitle("a");
+        note1.setAuthor("b");
+        note1.setText("ccc ccc");
+        note1.setDate("1990/01/01 00:00:01");
+
+        notebook.add(note1);
+
+        assertTrue(notebook.getAll().contains(note1));
     }
 
     @Test
